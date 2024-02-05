@@ -2,8 +2,11 @@ use std::{fs, error::Error};
 
 pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     let contents = fs::read_to_string(config.filepath)?;
-        // .expect("Should have been able to read file");
-    
+
+    for line in search(&config.query, &contents) {
+        println!("{line}")
+    }
+
     Ok(())
 }
 
